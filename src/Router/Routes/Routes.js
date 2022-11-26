@@ -1,5 +1,9 @@
+import AddProducts from "../../Pages/AddProducts/AddProducts";
 import AllCars from "../../Pages/AllCars/AllCars";
 import Blog from "../../Pages/Blog/Blog";
+import Login from "../../Pages/Login/Login";
+import ProductCategory from "../../Pages/ProductCategory/ProductCategory";
+import SignUp from "../../Pages/SignUp/SignUp";
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Main } = require("../../Layout/Main");
@@ -26,8 +30,24 @@ const router = createBrowserRouter([
             {
                 path: '/blog',
                 element: <Blog></Blog>
-            }
-
+            },
+            {
+                path: '/login',
+                element: <Login></Login>
+            },
+            {
+                path: '/register',
+                element: <SignUp></SignUp>
+            },
+            {
+                path: '/category',
+                element: <ProductCategory></ProductCategory>
+            },
+            {
+                path: '/addproducts',
+                element: <AddProducts></AddProducts>
+            },
+            
         ]
     }
 ])

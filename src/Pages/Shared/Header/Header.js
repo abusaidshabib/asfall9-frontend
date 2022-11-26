@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Context/UserContext/UserContext';
 
 const Header = () => {
+    const { logOut, user } = useContext(AuthContext);
 
     const menuItems = <React.Fragment>
 
@@ -35,8 +37,17 @@ const Header = () => {
                 <Link className='text-xl font-normal'>AS<span className='font-black '>FALL<span>9</span></span><sup className='colorYellow text-xl tracking-wide'> sell</sup></Link>
             </div>
             <div className="navbar-end">
-                <Link className='btn colorGray border-none rounded-none bg-colorYellow bg-colorYellowDk'>Login</Link>
-                <Link className='btn colorGray border-none rounded-none bg-colorYellow bg-colorYellowDk'> Register</Link>
+                {
+                    user?.uid ?
+                        <>
+                            <Link onClick={logOut} className='btn colorGray border-none rounded-none bg-colorYellow bg-colorYellowDk'> LogOut</Link>
+                        </>
+                        :
+                        <>
+                            <Link to="/login" className='btn colorGray border-none rounded-none bg-colorYellow bg-colorYellowDk'>Login</Link>
+                            <Link to="/register" className='btn colorGray border-none rounded-none bg-colorYellow bg-colorYellowDk'> Register</Link>
+                        </>
+                }
             </div>
         </div>
 
