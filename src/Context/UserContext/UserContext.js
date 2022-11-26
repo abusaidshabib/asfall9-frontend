@@ -1,7 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import app from '../../firebase/firebase.config';
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
-import { current } from "daisyui/src/colors";
 
 
 export const AuthContext = createContext();
@@ -21,6 +20,16 @@ const UserContext = ({ children }) => {
             return () => unSubscribe();
     },[])
 
+    //Sign up with email and password
+    const createUser = (email, password) =>{
+        return createUserWithEmailAndPassword(auth, email, password);
+    }
+
+    //Login with email and password
+    const signIn = (email, password) =>{
+        return signInWithEmailAndPassword(auth, email, password);
+    }
+
     //Login With Google popup
     const googlePopUp = (provider) => {
         return signInWithPopup(auth, provider);
@@ -32,7 +41,7 @@ const UserContext = ({ children }) => {
         return signOut(auth);
     }
 
-    const allInfo = { googlePopUp, loading, user, logOut };
+    const allInfo = { googlePopUp, loading, user, logOut, createUser, signIn };
 
     return (
         <div>
