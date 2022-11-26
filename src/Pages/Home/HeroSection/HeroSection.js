@@ -14,7 +14,7 @@ const HeroSection = () => {
                             Your best choice<br />
                         </h1>
                         <p className='text-xl text-white pt-8 pb-10'>You can find the best reseller car for yourself. All the payment and other important things are heavy secure.</p>
-                        <Link className="btn colorGray border-none rounded-none bg-colorYellow bg-colorYellowDk mr-5" > sell all products</Link>
+                        <Link to="/allcars" className="btn colorGray border-none rounded-none bg-colorYellow bg-colorYellowDk mr-5" > sell all products</Link>
                     </div>
                 </div>
             </div>

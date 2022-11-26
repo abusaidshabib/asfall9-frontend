@@ -1,4 +1,4 @@
-import AllProducts from "../../Pages/AllProducts/AllProducts";
+import AllCars from "../../Pages/AllCars/AllCars";
 import Blog from "../../Pages/Blog/Blog";
 
 const { createBrowserRouter } = require("react-router-dom");
@@ -19,9 +19,9 @@ const router = createBrowserRouter([
                 element: <Home></Home>
             },
             {
-                path: '/allproducts',
+                path: '/allcars',
                 loader: () => fetch('carsdata.json'),
-                element: <AllProducts></AllProducts>
+                element: <AllCars></AllCars>
             },
             {
                 path: '/blog',
