@@ -1,0 +1,14 @@
+[
+    {
+        "_id": 1,
+        "categories": "Aston" 
+    },
+    {
+        "_id": 2,
+        "categories": "Ferrari" 
+    },
+    {
+        "_id": 3,
+        "categories": "Jaguar" 
+    }
+]
