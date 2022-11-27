@@ -1,6 +1,8 @@
-import AddProducts from "../../Pages/AddProducts/AddProducts";
+import Dashboard from "../../Layout/Dashboard";
 import AllCars from "../../Pages/AllCars/AllCars";
 import Blog from "../../Pages/Blog/Blog";
+import AddProduct from "../../Pages/Dashboard/AddProduct/AddProduct";
+import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import Login from "../../Pages/Login/Login";
 import ProductCategory from "../../Pages/ProductCategory/ProductCategory";
 import SignUp from "../../Pages/SignUp/SignUp";
@@ -24,7 +26,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/allcars',
-                loader: () => fetch('carsdata.json'),
+                loader: () => fetch('http://localhost:5000/carsdata'),
                 element: <AllCars></AllCars>
             },
             {
@@ -40,14 +42,24 @@ const router = createBrowserRouter([
                 element: <SignUp></SignUp>
             },
             {
-                path: '/category',
+                path: '/category/:id',
                 element: <ProductCategory></ProductCategory>
-            },
+            }
+        ]
+    },
+    {
+        path: '/dashboard',
+        element: <Dashboard></Dashboard>,
+        children: [
+            // {
+            //     path: '/dashboard',
+            //     element: <MyOrders></MyOrders>
+            // },
             {
-                path: '/addproducts',
-                element: <AddProducts></AddProducts>
-            },
-            
+                path: '/dashboard',
+                element: <AddProduct></AddProduct>
+            }
+    
         ]
     }
 ])

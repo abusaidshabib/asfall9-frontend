@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import SingleCars from './SingleCars';
 
 const ExploreCars = () => {
-    const [cars, setCars] = useState([]);
-    useEffect(() => {
-        fetch('carsdata.json')
+
+    const {data:cars = [] } = useQuery({
+        queryKey: ['cars'],
+        queryFn: () => fetch('http://localhost:5000/carsdata')
             .then(res => res.json())
-            .then(data => setCars(data))
-    }, [])
+    })
 
 
     return (

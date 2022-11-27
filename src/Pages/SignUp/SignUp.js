@@ -5,18 +5,40 @@ import { AuthContext } from '../../Context/UserContext/UserContext';
 import GoogleSignIn from '../Shared/GoogleSignIn/GoogleSignIn';
 
 const SignUp = () => {
-    const {createUser} = useContext(AuthContext);
+    const { createUser } = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit } = useForm()
 
     const handleSignUp = (data) => {
         console.log(data);
         createUser(data.email, data.password)
-        .then(result => {
-            const user = result.user;
-            console.log(user);
-        })
-        .catch(error => console.log(error));
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+
+                const newreg = {
+                    email: data.email,
+                    name: data.name,
+                    category: data.category,
+                }
+
+                fetch('http://localhost:5000/user', {
+                    method: "POST",
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(newreg)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.acknowledged) {
+
+                        }
+                    })
+            })
+            .catch(error => console.log(error));
     }
+
+
 
     return (
         <div className="hero py-10">

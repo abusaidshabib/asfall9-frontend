@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { format } from 'date-fns';
 import { BsShieldFillCheck } from 'react-icons/bs';
 import BookingModal from './BookingModal';
 
 const ProductCategory = () => {
-    const updateDate = new Date();
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const updateDate = format(selectedDate, "PP");
+    const [cars, setCars] = useState([]);
+
+    // useEffect(() => {
+    //     fetch(`https://service-provider-server-seven.vercel.app/reviews?email=${}`)
+    //         .then(res => res.json())
+    //         .then(data => setCars(data))
+    // }, [user?.email])
 
     return (
         <div className="card w-96 bg-base-100 my-10 rounded-none">

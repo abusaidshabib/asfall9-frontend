@@ -1,13 +1,14 @@
 import React, { useContext, useState } from 'react';
 import GoogleSignIn from '../Shared/GoogleSignIn/GoogleSignIn';
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/UserContext/UserContext';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const {signIn} = useContext(AuthContext);
     const {err, setErr} = useState(' ');
+    const navigate = useNavigate();
 
     const handleLogin = data => {
         console.log(data);
