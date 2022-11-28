@@ -1,22 +1,19 @@
 import { async } from '@firebase/util';
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/UserContext/UserContext';
 
 const MyOrders = () => {
     const { user } = useContext(AuthContext);
+    const [myorders, setMyOrders] = useState();
 
-    const url = `http://localhost:5000/myorders?email=${user?.email}`;
+    useEffect(() => {
+        fetch(`http://localhost:5000/bookings/${user?.email}`)
+            .then(res => res.json())
+            .then(data => setMyOrders(data))
+    }, [user?.email])
 
-    const { data: myorders = [] } = useQuery({
-        queryKey: ['myorders', user?.email],
-        queryFn: async () => {
-            const res = await fetch(url);
-            const data = await res.json();
-            return data;
-        }
-    })
 
     return (
         <div>
@@ -39,23 +36,23 @@ const MyOrders = () => {
                     <tbody>
 
                         {
-                            myorders?.map(myorder => <tr>
+                            myorders?.map(myorder => <tr key={myorder._id}>
                                 <td>
                                     <div className="flex items-center space-x-3">
                                         <div className="avatar">
                                             <div className="mask mask-squircle object-cover w-12 h-12">
-                                                <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
+                                                <img src={myorder.productImg} alt="Avatar Tailwind CSS Component" />
                                             </div>
                                         </div>
                                         <div>
-                                            <div className="font-bold">{myorder.length}</div>
+                                            <div className="font-bold">{myorder.product}</div>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <p>$price</p>
+                                    <p>${myorder.productPrice}</p>
                                 </td>
-                                <td>Location</td>
+                                <td>{myorder.meetingLocation}</td>
                                 <th>
                                     <Link className='btn colorGray border-none rounded-none bg-colorYellow bg-colorYellowDk'>Payment</Link>
                                 </th>

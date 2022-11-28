@@ -1,14 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { format } from 'date-fns';
 import { AuthContext } from '../../../Context/UserContext/UserContext';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from 'react-toastify';
+
 
 const AddProduct = () => {
     const { user } = useContext(AuthContext);
     const recDate = new Date();
     const formatDate = format(recDate, "PP");
+    const [pictures, setPictures] = useState();
 
+    const imageHostKey = process.env.REACT_APP_imgbb_key;
+    console.log(imageHostKey);
 
     const handleAddProduct = event => {
+        event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const carName = form.pname.value;
@@ -18,29 +25,34 @@ const AddProduct = () => {
         const sellerName = form.name.value;
         const categories = form.category.value;
         const description = form.description.value;
-        const useyear = form.uyear.value;
+        const buyear = form.byear.value;
+        const use = form.uyear.value;
         const postime = form.ptime.value;
+        const location = form.location.value;
+        const phoneNumber
+        = form.mobile.value;
+        const status = "available";
 
-
+        // share link of image
+        const image = form.img.files[0];
+        console.log(image);
+        const formData = new FormData();
+        formData.append('image',image);
+        const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imageHostKey}`
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+        .then(res => res.json())
+        .then(imgData => {
+            if(imgData.success){
+                setPictures(imgData.data.url)
+            }
+        })
 
         const newProduct = {
-            email,carName, originalPrice, resalePrice, condition, sellerName, categories, description, useyear, postime
-
-            // "_id": "63813189fc13ae683f00139e",
-            // "index": 1,
-            // "categories": "Aston",
-            // "categoryId": "1",
-            // "carName": "Aston Martin Valhalla",
-            // "description": "Aerodynamics and awesomeness collide in the Aston Martin Valhalla Concept Car. This outstanding car, aka “The Son of Valkyrie” is an all-new performance-bred predator that incorporates concepts and technologies taken directly from F1™.",
-            // "condition": "Good",
-            // "pictures": "https://i.ibb.co/jvrx48z/Aston-Martin-Valhalla-Concept-Car.webp",
-            // "originalPrice": 10638264,
-            // "resalePrice": 5376297,
-            // "buyYear": 2017,
-            // "use-year": 6,
-            // "sellerName": "Orbadiah Bernt",
-            // "location": "3508 North Center",
-            // "phoneNumber": "+63 (481) 533-1207"
+            email, carName, originalPrice, resalePrice, condition, sellerName, categories, description, use, postime, location, phoneNumber
+            , status, pictures, buyear
         }
 
         fetch('http://localhost:5000/carsdata', {
@@ -52,9 +64,8 @@ const AddProduct = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.acknowledged) {
-
-                }
+                toast.success('Item added');
+                form.reset();
             })
             .catch(error => console.log(error));
 
@@ -72,17 +83,22 @@ const AddProduct = () => {
                             <label className="label">
                                 <span className='font-semibold text-sm tracking-wider uppercase'>Product Name</span>
                             </label>
-                            <input required name='pname' placeholder='PRODUCT NAME' type="text" className="input input-bordered rounded-none" />
+                            <input name='pname' placeholder='PRODUCT NAME' type="text" className="input input-bordered rounded-none" />
+
+                            <label className="label">
+                                <span className='font-semibold text-sm tracking-wider uppercase'>Image</span>
+                            </label>
+                            <input name='img' className='file-input w-full max-w-xs' type="file"/>
 
                             <label className="label">
                                 <span className='font-semibold text-sm tracking-wider uppercase'>Original Price</span>
                             </label>
-                            <input required name='oprice' placeholder='ORIGINAL PRICE' type="number" className="input input-bordered rounded-none" />
+                            <input name='oprice' placeholder='ORIGINAL PRICE' type="number" className="input input-bordered rounded-none" />
 
                             <label className="label">
                                 <span className='font-semibold text-sm tracking-wider uppercase'>Resell Price</span>
                             </label>
-                            <input required name='rprice' placeholder='RESELLER PRICE' type="number" className="input input-bordered rounded-none" />
+                            <input name='rprice' placeholder='RESELLER PRICE' type="number" className="input input-bordered rounded-none" />
 
                             <label className="label">
                                 <span className='font-semibold text-sm tracking-wider uppercase'>Select product condition</span>
@@ -93,38 +109,57 @@ const AddProduct = () => {
                                 <option>good</option>
                                 <option>fair</option>
                             </select>
+
                             <label className="label">
                                 <span className='font-semibold text-sm tracking-wider uppercase'>Your Name</span>
                             </label>
-                            <input required name='name' disabled defaultValue={user?.email} type="text" className="input input-bordered rounded-none" />
+                            <input name='name' disabled defaultValue={user?.displayName} type="text" className="input input-bordered rounded-none" />
+
+                            <label className="label">
+                                <span className='font-semibold text-sm tracking-wider uppercase'>Your Email</span>
+                            </label>
+                            <input name='email' disabled defaultValue={user?.email} type="email" className="input input-bordered rounded-none" />
                         </div>
                         <div className='grid grid-cols-1 gap-3 mt-10'>
                             <label className="label">
                                 <span className='font-semibold text-sm tracking-wider uppercase'>Select product category</span>
                             </label>
                             <select name='category' className="select input input-bordered font-normal text-sm uppercase rounded-none">
-                                <option>Aston</option>
-                                <option>Ferrari</option>
+                                <option>aston</option>
+                                <option>ferrari</option>
                                 <option>Jaguar</option>
                             </select>
                             <label className="label">
                                 <span className='font-semibold text-sm tracking-wider uppercase'>Description</span>
                             </label>
-                            <input required name='description' placeholder='DESCRIPTION' type="text" className="input input-bordered rounded-none" />
+                            <input name='description' placeholder='DESCRIPTION' type="text" className="input input-bordered rounded-none" />
                             <label className="label">
                                 <span className='font-semibold text-sm tracking-wider uppercase'>Year of use</span>
                             </label>
-                            <input required name='uyear' placeholder='YEAR' type="number" className="input input-bordered rounded-none" />
+                            <input name='uyear' placeholder='USE YEAR' type="number" className="input input-bordered rounded-none" />
+                            <label className="label">
+                                <span className='font-semibold text-sm tracking-wider uppercase'>Buy Year</span>
+                            </label>
+                            <input name='byear' placeholder='BUY YEAR' type="number" className="input input-bordered rounded-none" />
                             <label className="label">
                                 <span className='font-semibold text-sm tracking-wider uppercase'>Post time</span>
                             </label>
-                            <input required name='ptime' disabled defaultValue={formatDate} type="text" className="input input-bordered rounded-none" />
+                            <input name='ptime' disabled defaultValue={formatDate} type="text" className="input input-bordered rounded-none" />
+                            <label className="label">
+                                <span className='font-semibold text-sm tracking-wider uppercase'>Location</span>
+                            </label>
+                            <input name='location' placeholder='LOCATION' type="text" className="input input-bordered rounded-none" />
+                            <label className="label">
+                                <span className='font-semibold text-sm tracking-wider uppercase'>Mobile Number</span>
+                            </label>
+                            <input name='mobile' placeholder='MOBILE' type="tel" className="input input-bordered rounded-none" />
                         </div>
                     </div>
                     <br />
                     <input className='w-full btn colorGray rounded-none bg-colorYellow bg-colorYellowDk' type="submit" value="Submit" />
                 </form>
             </div>
+            <ToastContainer />
         </div>
     );
 };

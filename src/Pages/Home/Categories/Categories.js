@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Context/UserContext/UserContext';
 
 const Categories = () => {
-    const [cat, setCat] = useState('');
+    const {getCategory} = useContext(AuthContext);
 
     const { data: categories = [] } = useQuery({
         queryKey: ['categories'],
@@ -19,7 +20,7 @@ const Categories = () => {
             </h1>
             <div className='grid grid-cols-3 justify-items-center pt-10'>
                 {
-                    categories.map(category => <Link to={`/category/${category.categories}`} className='btn btn-outline colorGray rounded-none' key={category._id}>
+                    categories.map(category => <Link onClick={()=>getCategory(`${category.categories}`)} to={`/category/${category._id}`} className='btn btn-outline colorGray rounded-none' key={category._id}>
                         {category.categories}
                     </Link>)
                 }

@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../../Context/UserContext/UserContext';
 import GoogleSignIn from '../Shared/GoogleSignIn/GoogleSignIn';
 
 const SignUp = () => {
-    const { createUser } = useContext(AuthContext);
+    const { createUser, updateUser } = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit } = useForm()
 
     const handleSignUp = (data) => {
@@ -13,31 +14,34 @@ const SignUp = () => {
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
-
-                const newreg = {
-                    email: data.email,
-                    name: data.name,
-                    category: data.category,
+                toast('Account created successfully')
+                const userData = {
+                    displayName: data.name
                 }
-
-                fetch('http://localhost:5000/user', {
-                    method: "POST",
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify(newreg)
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data.acknowledged) {
-
+                updateUser(userData)
+                    .then(() => {
+                        const newreg = {
+                            email: data.email,
+                            name: data.name,
+                            category: data.category,
                         }
+
+                        fetch('http://localhost:5000/user', {
+                            method: "POST",
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(newreg)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                            })
                     })
+                    .catch(err => console.err(err));
+
             })
             .catch(error => console.log(error));
     }
-
 
 
     return (

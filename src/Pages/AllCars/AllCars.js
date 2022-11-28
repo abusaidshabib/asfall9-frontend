@@ -1,21 +1,30 @@
 import React from 'react';
+import { BsShieldFillCheck } from 'react-icons/bs';
 import { Link, useLoaderData } from 'react-router-dom';
 
 const AllCars = () => {
     const cars = useLoaderData();
     return (
-        <div className='grid grid-cols-3 gap-2'>
+        <div className='grid md:grid-cols-2 xl:grid-cols-3 gap-2 justify-items-center'>
             {
-                cars.map(car => <div key={car._id} className="card w-96 bg-base-100">
-                    <figure className="px-10 pt-10">
-                        <img src={car.pictures} alt="Shoes" className="rounded-xl" />
-                    </figure>
-                    <div className="card-body items-center text-center">
-                        <h2 className="card-title">{car.carName}</h2>
-                        <p>{car.description.slice(0, 50)}</p>
-                        <div className="card-actions">
-                            <Link className="btn colorGray border-none rounded-none bg-colorYellow bg-colorYellowDk mr-5">Buy Now</Link>
+                cars.map(car => 
+                    <div key={car._id} className="card w-96 bg-base-100 my-10 rounded-none">
+                    <figure><img className='rounded-xl' src={car.pictures} alt="Shoes" /></figure>
+                    <div className="card-body">
+                        <h2 className="card-title">
+                            {car.carName}
+                            {/* <div className="badge badge-secondary">NEW</div> */}
+                        </h2>
+                        <div className='grid grid-cols-2 justify-between'>
+                            <p><b>Original price</b><del> ${car.originalPrice}</del></p>
+                            <p><b>Resell price</b><del> ${car.originalPrice}</del></p>
                         </div>
+                        <p><b>Use-year</b> = {car.use}</p>
+                        <p>posted time</p>
+                        <span className='grid grid-cols-2'><p><b>Seller Name =</b>{car.sellerName}</p> <BsShieldFillCheck className='text-blue-800' /> </span>
+
+                        <p><b>Address =</b> {car.location}</p>
+                        <p><b>Phone Number =</b> {car.phoneNumber}</p>
                     </div>
                 </div>)
             }

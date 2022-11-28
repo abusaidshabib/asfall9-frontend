@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import app from '../../firebase/firebase.config';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 
 
 export const AuthContext = createContext();
@@ -35,13 +35,21 @@ const UserContext = ({ children }) => {
         return signInWithPopup(auth, provider);
     }
 
+    const getCategory =(category) =>{
+        localStorage.setItem('category', category);
+    }
+
     //log out code
     const logOut = () =>{
         setLoading(true);
         return signOut(auth);
     }
 
-    const allInfo = { googlePopUp, loading, user, logOut, createUser, signIn };
+    const updateUser = (userInfo) =>{
+        return updateProfile(auth.currentUser, userInfo);
+    }
+
+    const allInfo = { googlePopUp, loading, user, logOut, createUser, getCategory ,signIn, updateUser };
 
     return (
         <div>

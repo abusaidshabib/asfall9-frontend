@@ -23,7 +23,8 @@ const Header = () => {
             </Link>
                 <ul className="p-2 bg-colorYellow text-center colorGray z-10">
                     <li><Link to="/dashboard">My Orders</Link></li>
-                    <li><Link to="/dashboard/add">Submenu 2</Link></li>
+                    <li><Link to="/dashboard/addproduct">Add Product</Link></li>
+                    <li><Link to="/dashboard/myproduct">My Product</Link></li>
                 </ul>
             </li>
         }
