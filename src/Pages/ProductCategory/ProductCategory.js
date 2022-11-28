@@ -17,6 +17,10 @@ const ProductCategory = () => {
         }
     });
 
+    if(isLoading){
+        return <progress className="progress w-56"></progress>
+    }
+
 
     return (
         <div className='grid grid-cols-2 justify-between justify-items-center'>
@@ -27,7 +31,9 @@ const ProductCategory = () => {
             }
             {
                 product && <BookingModal product={product}
-                setProduct={setProduct}></BookingModal>
+                setProduct={setProduct}
+                refetch={refetch}
+                ></BookingModal>
             }
         </div>
     );

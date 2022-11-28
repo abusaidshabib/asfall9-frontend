@@ -84,8 +84,8 @@ const SignUp = () => {
                             <span className='font-semibold text-sm tracking-wider uppercase'>select buyer or seller</span>
                         </label>
                         <select {...register("category", { required: true })} className="select input input-bordered font-normal text-sm uppercase rounded-none">
-                            <option>Buyer</option>
-                            <option>Seller</option>
+                            <option>buyer</option>
+                            <option>seller</option>
                         </select>
                     </div>
                     <p>Already have an account <Link to="/login" className="text-secondary underline">Please Login</Link></p>

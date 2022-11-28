@@ -3,8 +3,8 @@ import { AuthContext } from '../../Context/UserContext/UserContext';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from 'react-toastify';
 
-const BookingModal = ({ product }) => {
-    const {pictures, carName, originalPrice, resalePrice, sellerName, location, phoneNumber, use} = product;
+const BookingModal = ({ product, refetch }) => {
+    const {pictures, carName, resalePrice} = product;
     const { user } = useContext(AuthContext);
     console.log(product);
 
@@ -38,6 +38,7 @@ const BookingModal = ({ product }) => {
             .then(data => {
                 if (data.acknowledged) {
                     toast.success('Item is booked');
+                    refetch();
                 }
             })
             .catch(error => console.log(error));
