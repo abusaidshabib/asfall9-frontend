@@ -42,6 +42,7 @@ const MyProducts = () => {
     if (isLoading) {
         return <progress className="progress w-56"></progress>
     }
+    
     return (
 
         <div className="overflow-x-auto justify-items-center">

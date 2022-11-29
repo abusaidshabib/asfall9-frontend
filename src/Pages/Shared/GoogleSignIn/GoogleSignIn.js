@@ -50,7 +50,8 @@ const GoogleSignIn = () => {
                     toast.success('User Logged Successfully');
                 }
                 else {
-                    toast.error(data.message)
+                    toast.success('User Logged Successfully');
+                    navigate(from, { replace: true });
                 }
             })
             .catch(err => console.err(err))

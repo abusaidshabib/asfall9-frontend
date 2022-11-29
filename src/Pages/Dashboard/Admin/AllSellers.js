@@ -22,7 +22,6 @@ const AllSellers = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Verification</th>
-                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -31,7 +30,6 @@ const AllSellers = () => {
                                 <th>{user.name}</th>
                                 <td>{user.email}</td>
                                 <td><Link className='btn colorGray hover:text-white rounded-none hover:border-none bg-colorYellow bg-colorYellowDk'>Make verified</Link></td>
-                                <td><td><Link className='btn rounded-none btn-outline'>Delete</Link></td></td>
                             </tr>
                             ))
                         }

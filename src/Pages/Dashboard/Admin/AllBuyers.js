@@ -20,7 +20,7 @@ const AllBuyers = () => {
                         <tr>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Delete</th>
+                            <th>User</th>
                         </tr>
                     </thead>
                     <tbody className='text-center'>
@@ -28,7 +28,7 @@ const AllBuyers = () => {
                             users.map(user => (<tr key={user._id}>
                                 <th>{user.name}</th>
                                 <td>{user.email}</td>
-                                <td><Link className='btn rounded-none btn-outline'>Delete</Link></td>
+                                <td>{user._id}</td>
                             </tr>
                             ))
                         }
