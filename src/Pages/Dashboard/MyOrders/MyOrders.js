@@ -20,7 +20,7 @@ const MyOrders = () => {
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
 
-                    <thead>
+                    <thead className='text-center'>
                         <tr>
                             <th>
                                 <div className="flex items-center space-x-3">
@@ -33,7 +33,7 @@ const MyOrders = () => {
                             <th>Payment</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className='text-center'>
 
                         {
                             myorders?.map(myorder => <tr key={myorder._id}>
