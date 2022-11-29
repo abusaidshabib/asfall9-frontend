@@ -7,15 +7,20 @@ const MyProducts = () => {
 
     const { user } = useContext(AuthContext);
 
+    const url = `http://localhost:5000/carsdata?email=${user?.email}`;
 
-    const { data: cars = [], refetch, isLoading } = useQuery({
+    const { data: cars = [], isLoading } = useQuery({
         queryKey: ['cars', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/carsdata/${user?.email}`);
+            const res = await fetch(url, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
             const data = await res.json();
-            return data
+            return data;
         }
-    });
+    })
 
     if (isLoading) {
         return <progress className="progress w-56"></progress>

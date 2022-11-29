@@ -1,46 +1,67 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Context/UserContext/UserContext';
+import useToken from '../../hooks/useToken';
 import GoogleSignIn from '../Shared/GoogleSignIn/GoogleSignIn';
+
 
 const SignUp = () => {
     const { createUser, updateUser } = useContext(AuthContext);
-    const { register, formState: { errors }, handleSubmit } = useForm()
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
+    const navigate = useNavigate();
+    const [userEmail, setUserEmail] = useState('');
+    const [token] = useToken(userEmail);
+
+    if(token){
+        navigate('/');
+    }
 
     const handleSignUp = (data) => {
-        console.log(data);
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
-                toast('Account created successfully')
                 const userData = {
                     displayName: data.name
                 }
                 updateUser(userData)
                     .then(() => {
-                        const newreg = {
-                            email: data.email,
-                            name: data.name,
-                            category: data.category,
-                        }
-
-                        fetch('http://localhost:5000/user', {
-                            method: "POST",
-                            headers: {
-                                'content-type': 'application/json'
-                            },
-                            body: JSON.stringify(newreg)
-                        })
-                            .then(res => res.json())
-                            .then(data => {
-                            })
+                        newUser(data.email, data.name, data.category)
                     })
-                    .catch(err => console.err(err));
-
+                    .catch(error => console.log(error));
             })
             .catch(error => console.log(error));
+    }
+
+
+    const newUser = (email, name, category) => {
+        const newreg = {
+            email: email,
+            name: name,
+            category: category,
+        }
+        console.log(newreg);
+
+        fetch('http://localhost:5000/user', {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newreg)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if(data.acknowledged){
+                    setUserEmail(email);
+                    toast.success('User Create Successfully')
+                    reset();
+                }
+                else{
+                    toast.error(data.message)
+                }
+            })
+            .catch(err => console.err(err))
     }
 
 

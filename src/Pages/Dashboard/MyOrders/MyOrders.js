@@ -6,14 +6,22 @@ import { AuthContext } from '../../../Context/UserContext/UserContext';
 
 const MyOrders = () => {
     const { user } = useContext(AuthContext);
-    const [myorders, setMyOrders] = useState();
 
-    useEffect(() => {
-        fetch(`http://localhost:5000/bookings/${user?.email}`)
-            .then(res => res.json())
-            .then(data => setMyOrders(data))
-    }, [user?.email])
 
+    const url = `http://localhost:5000/bookings?email=${user?.email}`;
+
+    const { data: myorders = [] } = useQuery({
+        queryKey: ['myorders', user?.email],
+        queryFn: async () => {
+            const res = await fetch(url, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
+            const data = await res.json();
+            return data;
+        }
+    })
 
     return (
         <div>
@@ -35,7 +43,7 @@ const MyOrders = () => {
                     </thead>
                     <tbody className='text-center'>
 
-                        {
+                        { myorders &&
                             myorders?.map(myorder => <tr key={myorder._id}>
                                 <td>
                                     <div className="flex items-center space-x-3">
