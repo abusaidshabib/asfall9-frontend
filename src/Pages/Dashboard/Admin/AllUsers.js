@@ -42,6 +42,7 @@ const AllUsers = () => {
                     <tr>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>Status</th>
                         <th>Make admin</th>
                         <th>Delete</th>
                     </tr>
@@ -51,8 +52,16 @@ const AllUsers = () => {
                         users.map(user => (<tr key={user._id}>
                             <th>{user.name}</th>
                             <td>{user.email}</td>
-                            <td><Link className='btn colorGray hover:text-white rounded-none hover:border-none bg-colorYellow bg-colorYellowDk'>Make admin</Link></td>
-                            <td><Link onClick={() => handleDeleteProduct(user._id)} className='btn rounded-none btn-outline'>Delete</Link></td>
+                            <td>{user.category}</td>
+                            {
+                                user?.category === "admin" ?
+                                    <></>
+                                    :
+                                    <>
+                                        <td><Link className='btn colorGray hover:text-white rounded-none hover:border-none bg-colorYellow bg-colorYellowDk'>Make admin</Link></td>
+                                        <td><Link onClick={() => handleDeleteProduct(user._id)} className='btn rounded-none btn-outline'>Delete</Link></td>
+                                    </>
+                            }
                         </tr>
                         ))
                     }
