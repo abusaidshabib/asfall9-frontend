@@ -8,29 +8,9 @@ const Header = () => {
     const menuItems = <React.Fragment>
 
         <li><Link className='bg-colorYellowDk hover:text-white' to="/home">Home</Link></li>
-        <li><Link className='bg-colorYellowDk hover:text-white' >Cars & Categories
-            <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
-        </Link>
-            <ul className="p-2 bg-colorYellow text-center colorGray z-10">
-                <li><Link to="/allcars">All Cars</Link></li>
-                <li><Link>Submenu 2</Link></li>
-            </ul>
-        </li>
-        {
-            user?.email &&
-            <li><Link className='bg-colorYellowDk hover:text-white' >dashboard
-                <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
-            </Link>
-                <ul className="p-2 bg-colorYellow text-center colorGray z-10">
-                    <li><Link to="/dashboard">My Orders</Link></li>
-                    <li><Link to="/dashboard/addproduct">Add Product</Link></li>
-                    <li><Link to="/dashboard/myproduct">My Product</Link></li>
-                    <li><Link to="/dashboard/allsellers">All Sellers</Link></li>
-                    <li><Link to="/dashboard/allbuyers">All Buyers</Link></li>
-                </ul>
-            </li>
-        }
+        <li><Link className='bg-colorYellowDk hover:text-white' to="/allcars">All Products</Link></li>
         <li><Link className='bg-colorYellowDk hover:text-white' to="/blog">Blog</Link></li>
+        <li><Link className='bg-colorYellowDk hover:text-white' to="/dashboard">dashboard</Link></li>
     </React.Fragment>
 
     return (

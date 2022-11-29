@@ -4,11 +4,13 @@ import Blog from "../../Pages/Blog/Blog";
 import AddProduct from "../../Pages/Dashboard/AddProduct/AddProduct";
 import AllBuyers from "../../Pages/Dashboard/Admin/AllBuyers";
 import AllSellers from "../../Pages/Dashboard/Admin/AllSellers";
+import AllUsers from "../../Pages/Dashboard/Admin/AllUsers";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 import Login from "../../Pages/Login/Login";
 import ProductCategory from "../../Pages/ProductCategory/ProductCategory";
 import SignUp from "../../Pages/SignUp/SignUp";
+import PrivateRouter from "./PrivateRouter/PrivateRouter";
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: Main } = require("../../Layout/Main");
@@ -48,13 +50,13 @@ const router = createBrowserRouter(
             },
             {
                 path: '/category/:id',
-                element: <ProductCategory></ProductCategory>
+                element: <PrivateRouter><ProductCategory></ProductCategory></PrivateRouter>
             }
         ]
     },
     {
         path: '/dashboard',
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRouter><Dashboard></Dashboard></PrivateRouter>,
         children: [
             {
                 path: '/dashboard',
@@ -75,6 +77,10 @@ const router = createBrowserRouter(
             {
                 path: '/dashboard/allbuyers',
                 element: <AllBuyers></AllBuyers>
+            },
+            {
+                path: '/dashboard/allusers',
+                element: <AllUsers></AllUsers>
             }
     
         ]
