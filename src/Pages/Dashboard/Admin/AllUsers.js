@@ -52,7 +52,7 @@ const AllUsers = () => {
                             <th>{user.name}</th>
                             <td>{user.email}</td>
                             <td><Link className='btn colorGray hover:text-white rounded-none hover:border-none bg-colorYellow bg-colorYellowDk'>Make admin</Link></td>
-                            <td><td><Link onClick={() => handleDeleteProduct(user._id)} className='btn rounded-none btn-outline'>Delete</Link></td></td>
+                            <td><Link onClick={() => handleDeleteProduct(user._id)} className='btn rounded-none btn-outline'>Delete</Link></td>
                         </tr>
                         ))
                     }
