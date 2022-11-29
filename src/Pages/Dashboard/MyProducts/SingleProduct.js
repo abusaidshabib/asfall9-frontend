@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-const SingleProduct = ({ car }) => {
-    const { status, pictures, carName, resalePrice } = car;
+const SingleProduct = ({ car, handleDeleteProduct}) => {
+    const { status, pictures, carName, resalePrice, _id } = car;
 
 
 
@@ -21,7 +21,7 @@ const SingleProduct = ({ car }) => {
             <td>{resalePrice}</td>
             <td><Link className='btn colorGray border-none rounded-none bg-colorYellow bg-colorYellowDk'>Change Status</Link></td>
             <td>
-            <Link className='btn bg-colorGray border-none rounded-none hover:text-black hover:bg-white'>Delete</Link>
+                <Link onClick={()=>handleDeleteProduct(_id)} className='btn bg-colorGray border-none rounded-none hover:text-black hover:bg-white'>Delete</Link>
             </td>
         </tr>
     );
