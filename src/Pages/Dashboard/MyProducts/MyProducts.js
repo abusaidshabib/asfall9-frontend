@@ -8,7 +8,7 @@ const MyProducts = () => {
 
     const { user } = useContext(AuthContext);
 
-    const url = `http://localhost:5000/carsdata?email=${user?.email}`;
+    const url = `https://b612-used-products-resale-server-side-abusaidshabib.vercel.app/carsdata?email=${user?.email}`;
 
     const { data: cars = [], isLoading, refetch } = useQuery({
         queryKey: ['cars', user?.email],
@@ -24,7 +24,7 @@ const MyProducts = () => {
     })
 
     const handleStatus = id => {
-        fetch(`http://localhost:5000/carsdata/${id}`, {
+        fetch(`https://b612-used-products-resale-server-side-abusaidshabib.vercel.app/carsdata/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -40,7 +40,7 @@ const MyProducts = () => {
     }
 
     const handleDeleteProduct = id => {
-        fetch(`http://localhost:5000/carsdata/${id}`, {
+        fetch(`https://b612-used-products-resale-server-side-abusaidshabib.vercel.app/carsdata/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

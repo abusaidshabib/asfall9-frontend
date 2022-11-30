@@ -8,7 +8,7 @@ const Categories = () => {
 
     const { data: categories = [] } = useQuery({
         queryKey: ['categories'],
-        queryFn: () => fetch('http://localhost:5000/category')
+        queryFn: () => fetch('https://b612-used-products-resale-server-side-abusaidshabib.vercel.app/category')
             .then(res => res.json())
     })
 

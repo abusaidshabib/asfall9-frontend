@@ -7,7 +7,7 @@ const ExploreCars = () => {
 
     const { data: cars = [] } = useQuery({
         queryKey: ['cars'],
-        queryFn: () => fetch('http://localhost:5000/carsdata')
+        queryFn: () => fetch('https://b612-used-products-resale-server-side-abusaidshabib.vercel.app/carsdata')
             .then(res => res.json())
     })
 

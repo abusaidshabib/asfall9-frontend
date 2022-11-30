@@ -5,7 +5,7 @@ import SingleCars from '../ExploreCars/SingleCars';
 
 const AdvertisedItem = () => {
 
-    const url = `http://localhost:5000/status/available`;
+    const url = `https://b612-used-products-resale-server-side-abusaidshabib.vercel.app/status/available`;
 
     const { data: cars = []} = useQuery({
         queryKey: ['cars'],

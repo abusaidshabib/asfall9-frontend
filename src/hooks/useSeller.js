@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const useSeller = email => {
 
-    const url = `http://localhost:5000/users/seller/${email}`;
+    const url = `https://b612-used-products-resale-server-side-abusaidshabib.vercel.app/users/seller/${email}`;
 
     const { data: datas = [], isLoading, refetch } = useQuery({
         queryKey: ['datas', email],

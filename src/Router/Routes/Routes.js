@@ -33,7 +33,7 @@ const router = createBrowserRouter(
             },
             {
                 path: '/allcars',
-                loader: () => fetch('http://localhost:5000/status/available'),
+                loader: () => fetch('https://b612-used-products-resale-server-side-abusaidshabib.vercel.app/status/available'),
                 element: <AllCars></AllCars>
             },
             {

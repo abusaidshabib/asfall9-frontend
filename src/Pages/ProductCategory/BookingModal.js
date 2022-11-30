@@ -27,7 +27,7 @@ const BookingModal = ({ product, refetch }) => {
             email, name, product,  phoneNumber, meetingLocation, productImg, productPrice,
         }
 
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://b612-used-products-resale-server-side-abusaidshabib.vercel.app/bookings', {
             method: "POST",
             headers: {
                 'content-type': 'application/json'

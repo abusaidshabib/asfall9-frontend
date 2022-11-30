@@ -55,7 +55,7 @@ const AddProduct = () => {
             , status, pictures, buyear
         }
 
-        fetch('http://localhost:5000/carsdata', {
+        fetch('https://b612-used-products-resale-server-side-abusaidshabib.vercel.app/carsdata', {
             method: "POST",
             headers: {
                 'content-type': 'application/json'

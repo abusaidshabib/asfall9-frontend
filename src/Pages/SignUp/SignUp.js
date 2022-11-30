@@ -43,7 +43,7 @@ const SignUp = () => {
         }
         console.log(newreg);
 
-        fetch('http://localhost:5000/user', {
+        fetch('https://b612-used-products-resale-server-side-abusaidshabib.vercel.app/user', {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
