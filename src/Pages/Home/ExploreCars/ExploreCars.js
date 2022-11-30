@@ -5,7 +5,7 @@ import SingleCars from './SingleCars';
 
 const ExploreCars = () => {
 
-    const {data:cars = [] } = useQuery({
+    const { data: cars = [] } = useQuery({
         queryKey: ['cars'],
         queryFn: () => fetch('http://localhost:5000/carsdata')
             .then(res => res.json())
@@ -13,18 +13,18 @@ const ExploreCars = () => {
 
 
     return (
-        <div className='py-10 2xl:mx-60'>
-            <h1 className='text-6xl font-black uppercase colorGray text-center'>
+        <div className='pt-10 2xl:mx-60'>
+            <h1 className='text-6xl py-10 font-black uppercase colorGray text-center'>
                 Explore Cars
             </h1>
-            <div className='grid md:grid-cols-2 xl:grid-cols-3 gap-2 justify-items-center'>
-                {/* Single Cards */}
-                {
-                    cars.map((car, dex) => dex < 3 && <SingleCars key={car._id} car={car}></SingleCars>)
-                }
-            </div>
-            <div className='text-center'>
-                <Link to="/allcars" className="btn colorGray border-none rounded-none bg-colorYellow bg-colorYellowDk mr-5">See all products</Link>
+            <div className="hero min-h-screen bg-base-200">
+                <div className="hero-content flex-col lg:flex-row">
+                    <img src={`https://images.unsplash.com/photo-1647579153115-053ca3c03a0d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80`} className="max-w-sm rounded-lg shadow-2xl" alt='' />
+                    <div>
+                        <h1 className="text-5xl font-bold">Why We are deferent!</h1>
+                        <p className="py-6">we Provide cars with 100% seftly and create great bonding between buyers and sellers.</p>
+                    </div>
+                </div>
             </div>
         </div>
     );

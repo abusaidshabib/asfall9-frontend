@@ -12,9 +12,9 @@
         "sellerName": "Abu Said Shabib",
         "location": "3508 North Center",
         "phoneNumber": "+88 01236985745",
-        "email": "abusaidshabib.cse@gmail.com",
+        "email": "seller@gmail.com",
         "postime": "Nov 28, 2022",
-        "status": "available"
+        "status": "unavailable"
     },
     {
         "categories": "aston",
@@ -29,9 +29,9 @@
         "sellerName": "Abu Said Shabib",
         "location": "8 Hoepker Plaza",
         "phoneNumber": "+88 01236985745",
-        "email": "abusaidshabib.cse@gmail.com",
+        "email": "seller@gmail.com",
         "postime": "Nov 28, 2022",
-        "status": "available"
+        "status": "unavailable"
     },
     {
         "categories": "ferrari",
@@ -46,9 +46,9 @@
         "sellerName": "Abu Said Shabib",
         "location": "40 North Avenue",
         "phoneNumber": "+88 01236985745",
-        "email": "abusaidshabib.cse@gmail.com",
+        "email": "seller1@gmail.com",
         "postime": "Nov 28, 2022",
-        "status": "available"
+        "status": "unavailable"
     },
     {
         "categories": "ferrari",
@@ -63,9 +63,9 @@
         "sellerName": "Abu Said Shabib",
         "location": "33600 Weeping Birch Court",
         "phoneNumber": "+88 01236985745",
-        "email": "abusaidshabib.cse@gmail.com",
+        "email": "seller1@gmail.com",
         "postime": "Nov 28, 2022",
-        "status": "available"
+        "status": "unavailable"
     },
     {
         "categories": "Jaguar",
@@ -80,9 +80,9 @@
         "sellerName": "Abu Said Shabib",
         "location": "16028 Algoma Plaza",
         "phoneNumber": "+88 01236985745",
-        "email": "abusaidshabib.cse@gmail.com",
+        "email": "seller2@gmail.com",
         "postime": "Nov 28, 2022",
-        "status": "available"
+        "status": "unavailable"
     },
     {
         "categories": "Jaguar",
@@ -97,8 +97,8 @@
         "sellerName": "Abu Said Shabib",
         "location": "262 Roxbury Circle",
         "phoneNumber": "+88 01236985745",
-        "email": "abusaidshabib.cse@gmail.com",
+        "email": "seller2@gmail.com",
         "postime": "Nov 28, 2022",
-        "status": "available"
+        "status": "unavailable"
     }
 ]

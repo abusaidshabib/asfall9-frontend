@@ -33,7 +33,7 @@ const router = createBrowserRouter(
             },
             {
                 path: '/allcars',
-                loader: () => fetch('http://localhost:5000/carsdata'),
+                loader: () => fetch('http://localhost:5000/status/available'),
                 element: <AllCars></AllCars>
             },
             {

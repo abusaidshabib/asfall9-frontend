@@ -1,8 +1,10 @@
 import React from 'react';
 import { BsShieldFillCheck } from 'react-icons/bs';
+import useSeller from '../../hooks/useBuyer';
 
 const ProductCard = ({car, setProduct}) => {
-    const {pictures, carName, originalPrice, resalePrice, sellerName, location, phoneNumber, use} = car;
+    const {pictures, carName, originalPrice, resalePrice, sellerName, location, phoneNumber, use, email} = car;
+    const [datas, isLoading, refetch] = useSeller(email);
 
     return (
         <div className="card w-96 bg-base-100 my-10 rounded-none">
@@ -18,7 +20,11 @@ const ProductCard = ({car, setProduct}) => {
                 </div>
                 <p><b>Use-year</b> = {use}</p>
                 <p>posted time</p>
-                <span className='grid grid-cols-2'><p><b>Seller Name =</b>{sellerName}</p> <BsShieldFillCheck className='text-blue-800' /> </span>
+                <span className='grid grid-cols-2'><p><b>Seller Name =</b>{sellerName}</p> {datas?.status?
+            <BsShieldFillCheck className='text-blue-800 w-5' />  
+            :
+            <></>
+            } </span>
 
                 <p><b>Address =</b> {location}</p>
                 <p><b>Phone Number =</b> {phoneNumber}</p>

@@ -1,6 +1,5 @@
 import React from 'react';
-import { BsShieldFillCheck } from 'react-icons/bs';
-import { Link, useLoaderData } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 
 const AllCars = () => {
     const cars = useLoaderData();
@@ -21,7 +20,6 @@ const AllCars = () => {
                         </div>
                         <p><b>Use-year</b> = {car.use}</p>
                         <p>posted time</p>
-                        <span className='grid grid-cols-2'><p><b>Seller Name =</b>{car.sellerName}</p> <BsShieldFillCheck className='text-blue-800' /> </span>
 
                         <p><b>Address =</b> {car.location}</p>
                         <p><b>Phone Number =</b> {car.phoneNumber}</p>

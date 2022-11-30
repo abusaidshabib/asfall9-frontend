@@ -23,6 +23,22 @@ const MyProducts = () => {
         }
     })
 
+    const handleStatus = id => {
+        fetch(`http://localhost:5000/carsdata/${id}`, {
+            method: 'PUT',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.modifiedCount > 0){
+                toast.success('Make admin successful.')
+                refetch();
+            }
+        })
+    }
+
     const handleDeleteProduct = id => {
         fetch(`http://localhost:5000/carsdata/${id}`, {
             method: 'DELETE',
@@ -62,6 +78,7 @@ const MyProducts = () => {
                         cars?.map(car => <SingleProduct key={car._id} car={car}
                             refetch={refetch}
                             handleDeleteProduct={handleDeleteProduct}
+                            handleStatus={handleStatus}
                         ></SingleProduct>)
                     }
                 </tbody>
