@@ -34,6 +34,23 @@ const AllSellers = () => {
         return <progress className="progress w-56"></progress>
     }
 
+    const handleVerified = id => {
+        fetch(`http://localhost:5000/users/${id}`, {
+            method: 'PUT',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    toast.success('Make admin successful.')
+                    refetch();
+                }
+            })
+    }
+
+
     return (
         <div className="overflow-x-auto">
             <table className="table table-zebra w-full">
@@ -51,8 +68,17 @@ const AllSellers = () => {
                         users.map(user => (<tr key={user._id}>
                             <th>{user.name}</th>
                             <td>{user.email}</td>
-                            <td><Link className='btn colorGray hover:text-white rounded-none hover:border-none bg-colorYellow bg-colorYellowDk'>Make verified</Link></td>
-                            <td><td><Link onClick={() => handleDeleteProduct(user._id)} className='btn rounded-none btn-outline'>Delete</Link></td></td>
+                            {
+                                user?.status === "verified" ?
+                                    <>
+                                        <td><Link className='btn btn-disabled rounded-none'>Make verified</Link></td>
+                                    </>
+                                    :
+                                    <>
+                                        <td><Link onClick={() => handleVerified(user._id)} className='btn colorGray hover:text-white rounded-none hover:border-none bg-colorYellow bg-colorYellowDk'>Make verified</Link></td>
+                                    </>
+                            }
+                            <td><Link onClick={() => handleDeleteProduct(user._id)} className='btn rounded-none btn-outline'>Delete</Link></td>
                         </tr>
                         ))
                     }
