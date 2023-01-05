@@ -1,8 +1,10 @@
 import React from 'react';
 import { BsShieldFillCheck } from 'react-icons/bs';
 import useSeller from '../../hooks/useBuyer';
+import useTitle from '../../hooks/useTitle';
 
 const ProductCard = ({car, setProduct}) => {
+    useTitle("ProductCard");
     const {pictures, carName, originalPrice, resalePrice, sellerName, location, phoneNumber, use, email} = car;
     const [datas, isLoading, refetch] = useSeller(email);
 

@@ -3,9 +3,12 @@ import { format } from 'date-fns';
 import { AuthContext } from '../../../Context/UserContext/UserContext';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from 'react-toastify';
+import useTitle from '../../../hooks/useTitle';
 
 
 const AddProduct = () => {
+useTitle('AddProduct');
+
     const { user } = useContext(AuthContext);
     const recDate = new Date();
     const formatDate = format(recDate, "PP");

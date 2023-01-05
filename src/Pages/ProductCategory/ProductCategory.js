@@ -1,9 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
+import useTitle from '../../hooks/useTitle';
 import BookingModal from './BookingModal';
 import ProductCard from './ProductCard';
 
 const ProductCategory = () => {
+    useTitle("ProductCategory")
     // const [cars, setCars] = useState([]);
     const [product, setProduct] = useState(null);
     const _id = localStorage.getItem('category');

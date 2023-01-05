@@ -2,8 +2,10 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../Context/UserContext/UserContext';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from 'react-toastify';
+import useTitle from '../../hooks/useTitle';
 
 const BookingModal = ({ product, refetch }) => {
+    useTitle("Booking");
     const {pictures, carName, resalePrice} = product;
     const { user } = useContext(AuthContext);
     console.log(product);

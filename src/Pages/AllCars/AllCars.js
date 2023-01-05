@@ -1,7 +1,10 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import useTitle from '../../hooks/useTitle';
 
 const AllCars = () => {
+useTitle("Cars");
+
     const cars = useLoaderData();
     return (
         <div className='grid md:grid-cols-2 xl:grid-cols-3 gap-2 justify-items-center'>

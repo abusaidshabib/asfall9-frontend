@@ -1,6 +1,9 @@
 import React from 'react';
+import useTitle from '../../hooks/useTitle';
 
 const Blog = () => {
+useTitle("Blog");
+
     return (
         <div>
             <b>1.What are the different ways to manage a state in a React application?</b>

@@ -3,8 +3,10 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../../Context/UserContext/UserContext';
+import useTitle from '../../../hooks/useTitle';
 
 const AllUsers = () => {
+    useTitle("Users");
     const {user} = useContext(AuthContext);
 
     const { data: users = [], refetch, isLoading } = useQuery({
